@@ -37,13 +37,13 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         {
             new Youtuber()
             {
-                Name="Mustang",
-                Password="123"
+                Name="Eyvaz",
+                Password="1234"
             },
             new Youtuber()
             {
-                Name="Eyvaz",
-                Password="1234"
+                Name="Mustang",
+                Password="123"
             },
             new Youtuber()
             {
@@ -57,9 +57,15 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             },
         };
 
+        static bool b = false;
+
         public YoutuberSignInViewModel()
         {
-            App.Youtuber = youtubers;
+            if (!b)
+            {
+                App.Youtuber = youtubers;
+                b = !b;
+            }
             SingButtonClicked = new RelayCommand((a) =>
             {
                 foreach (var item in youtubers)

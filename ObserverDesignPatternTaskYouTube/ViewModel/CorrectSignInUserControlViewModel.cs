@@ -1,6 +1,7 @@
 ﻿using ObserverDesignPatternTaskYouTube.Commands;
 using ObserverDesignPatternTaskYouTube.Models;
 using ObserverDesignPatternTaskYouTube.Views;
+using ObserverDesignPatternTaskYouTube.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace ObserverDesignPatternTaskYouTube.ViewModel
@@ -68,34 +70,43 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         static int indexer = 0;
         //static List<YoutubeShowAllSubscriberWindow> youtubeShowAlls = new List<YoutubeShowAllSubscriberWindow>();
         //static List<string> youtubeTitles = new List<string>();
-        public CorrectSignInUserControlViewModel()
+
+        public void CheckBoxTextWriter(CorrectSignInUserControl correctSignInUser)
         {
             if (App.Youtuber.Count > indexer)
             {
                 A = App.Youtuber[indexer].Name;
+                CheckBox checkBox = new CheckBox();
+                correctSignInUser.Content = A;
                 indexer += 1;
+                correctSignInUser.Margin = new Thickness(0, 0, 0, 10);
+                App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUser);
             }
+        }
+        public CorrectSignInUserControlViewModel()
+        {
             var youtube = new Subject();
             Checked = new RelayCommand((b) =>
             {
-                //for (int i = 0; i < youtubeTitles.Count; i++)
-                //{
-                //    if (youtubeTitles[i] == YoutuberName)
-                //    {
-                //        App.CorrectSignIn = youtubeShowAlls[i];
-                //        break;
-                //    }
-                //    else
-                //    {
+                for (int i = 0; i < App.YoutubeTitles.Count; i++)
+                {
+                    if (App.YoutubeTitles[i] == YoutuberName)
+                    {
+                        App.CorrectSignIn = App.YoutubeShowAlls[i];
+                        break;
+                    }
+                    else
+                    {
                         YoutubeShowAllSubscriberWindow youtubeShowAllSubscriberWindow = new YoutubeShowAllSubscriberWindow();
-                        App.CorrectSignIn = youtubeShowAllSubscriberWindow;
-                //        youtubeShowAlls.Add(youtubeShowAllSubscriberWindow);
-                //    }
-                //}
-                //    a = !a;
-                //}
+                        //App.CorrectSignIn = youtubeShowAllSubscriberWindow;
+                        App.YoutubeShowAlls.Add(youtubeShowAllSubscriberWindow);
+                    }
+                }
+                a = !a;
+
                 TxtBlockContent += $"{App.Subscriber.Name}\n";
                 //youtube.Attach()
+
             });
 
             AddNewPost = new RelayCommand((a) =>

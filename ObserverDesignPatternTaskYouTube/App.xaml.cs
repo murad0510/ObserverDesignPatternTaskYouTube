@@ -20,8 +20,11 @@ namespace ObserverDesignPatternTaskYouTube
         public static SubscriberWindow SubscriberWindow { get; set; }
         public static YoutubeShowAllSubscriberWindow CorrectSignIn { get; set; }
         public static CorrectSignInUserControlViewModel Correct { get; set; }
-        public static  List<Youtuber> Youtuber { get; set; }
+        public static List<Youtuber> Youtuber { get; set; }
         public static Subscriber Subscriber { get; set; }
+
+        public static List<YoutubeShowAllSubscriberWindow> YoutubeShowAlls { get; set; }
+        public static List<string> YoutubeTitles { get; set; }
 
     }
 }
