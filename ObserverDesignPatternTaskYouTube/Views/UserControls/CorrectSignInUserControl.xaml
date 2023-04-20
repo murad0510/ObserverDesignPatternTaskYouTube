@@ -13,7 +13,7 @@
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="My" Grid.ColumnSpan="2">
-            <CheckBox Content="{Binding A}" HorizontalAlignment="Center">
+            <CheckBox Content="{Binding A,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center">
                 <CheckBox.RenderTransform>
                     <ScaleTransform ScaleX="3.5" ScaleY="3.5"></ScaleTransform>
                 </CheckBox.RenderTransform>

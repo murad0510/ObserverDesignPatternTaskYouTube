@@ -23,6 +23,8 @@ namespace ObserverDesignPatternTaskYouTube.Views.UserControls
         public YoutubeSignInUserControl()
         {
             InitializeComponent();
+            YoutuberSignInWindow youtuberSignIn = new YoutuberSignInWindow();
+            this.DataContext = youtuberSignIn;
         }
     }
 }

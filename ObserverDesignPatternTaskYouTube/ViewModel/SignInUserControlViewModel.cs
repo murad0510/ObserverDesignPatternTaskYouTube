@@ -65,6 +65,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         };
         static bool AppSubscriberWindowClear = true;
         static bool b = false;
+
         public SignInUserControlViewModel()
         {
             SingButtonClicked = new RelayCommand((a) =>
@@ -81,6 +82,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                         CorrectSignInUserControlViewModel correctSignInUserControl1 = new CorrectSignInUserControlViewModel();
                         correctSignInUserControl1.YoutuberName = item.Name;
                         App.Subscriber = item;
+                        
                         for (int i = 0; i < App.Youtuber.Count; i++)
                         {
                             CorrectSignInUserControl correctSignInUserControl = new CorrectSignInUserControl();
@@ -89,9 +91,13 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                                 App.SubscriberWindow.MyStackPanel.Children.Clear();
                                 AppSubscriberWindowClear = !AppSubscriberWindowClear;
                             }
-                            correctSignInUserControl1.CheckBoxTextWriter(correctSignInUserControl);
-                            //correctSignInUserControl.Margin = new Thickness(0, 0, 0, 10);
-                            //App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUserControl);
+
+                            //YoutubeShowAllSubscriberWindow youtubeShowAll = new YoutubeShowAllSubscriberWindow();
+                            //youtubeShowAll.Title = correctSignInUserControl.Content.ToString();
+                            //correctSignInUserControl1.YoutubeShowAlls.Add(youtubeShowAll);
+                            
+                            correctSignInUserControl.Margin = new Thickness(100, 30, 0, 0);
+                            App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUserControl);
                         }
                     }
                 }

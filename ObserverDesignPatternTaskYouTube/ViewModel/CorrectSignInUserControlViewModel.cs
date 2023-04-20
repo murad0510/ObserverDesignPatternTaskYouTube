@@ -68,43 +68,64 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
 
         static bool a = true;
         static int indexer = 0;
-        //static List<YoutubeShowAllSubscriberWindow> youtubeShowAlls = new List<YoutubeShowAllSubscriberWindow>();
-        //static List<string> youtubeTitles = new List<string>();
+        static bool checkboxContent = false;
+        static List<YoutubeShowAllSubscriberWindow> youtubeShowAlls = new List<YoutubeShowAllSubscriberWindow>();
+        static List<string> youtubeTitles = new List<string>();
 
-        public void CheckBoxTextWriter(CorrectSignInUserControl correctSignInUser)
-        {
-            if (App.Youtuber.Count > indexer)
-            {
-                A = App.Youtuber[indexer].Name;
-                CheckBox checkBox = new CheckBox();
-                correctSignInUser.Content = A;
-                indexer += 1;
-                correctSignInUser.Margin = new Thickness(0, 0, 0, 10);
-                App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUser);
-            }
-        }
         public CorrectSignInUserControlViewModel()
         {
-            var youtube = new Subject();
-            Checked = new RelayCommand((b) =>
+            if (checkboxContent)
             {
-                for (int i = 0; i < App.YoutubeTitles.Count; i++)
+                if (App.Youtuber.Count > indexer)
                 {
-                    if (App.YoutubeTitles[i] == YoutuberName)
+                    if (a)
                     {
-                        App.CorrectSignIn = App.YoutubeShowAlls[i];
-                        break;
+                        A = App.Youtuber[indexer].Name;
+                        indexer += 1;
+                        a = !a;
+                        YoutubeShowAllSubscriberWindow youtubeShowAll = new YoutubeShowAllSubscriberWindow();
+                        youtubeShowAll.Title = A;
+                        youtubeShowAlls.Add(youtubeShowAll);
                     }
                     else
                     {
-                        YoutubeShowAllSubscriberWindow youtubeShowAllSubscriberWindow = new YoutubeShowAllSubscriberWindow();
-                        //App.CorrectSignIn = youtubeShowAllSubscriberWindow;
-                        App.YoutubeShowAlls.Add(youtubeShowAllSubscriberWindow);
+                        a = !a;
+                    }
+                    //youtubeTitles.Add(A);
+                    //CheckBox checkBox = new CheckBox();
+                    //correctSignInUser.Content = "sa";
+                    //correctSignInUser.Margin = new Thickness(0, 0, 0, 10);
+                    //App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUser);
+                }
+            }
+            checkboxContent = true;
+            var youtube = new Subject();
+            Checked = new RelayCommand((b) =>
+            {
+                for (int i = 0; i < youtubeShowAlls.Count; i++)
+                {
+                    if (youtubeShowAlls[i].Title == "OPPO")
+                    {
+                        youtubeShowAlls[i].MyTxtBlock.Text += $"{App.Subscriber.Name}\n";
                     }
                 }
-                a = !a;
+                //for (int i = 0; i < App.YoutubeTitles.Count; i++)
+                //{
+                //    if (App.YoutubeTitles[i] == YoutuberName)
+                //    {
+                //        App.CorrectSignIn = App.YoutubeShowAlls[i];
+                //        break;
+                //    }
+                //    else
+                //    {
+                //        YoutubeShowAllSubscriberWindow youtubeShowAllSubscriberWindow = new YoutubeShowAllSubscriberWindow();
+                //        //App.CorrectSignIn = youtubeShowAllSubscriberWindow;
+                //        App.YoutubeShowAlls.Add(youtubeShowAllSubscriberWindow);
+                //    }
+                //}
+                //a = !a;
 
-                TxtBlockContent += $"{App.Subscriber.Name}\n";
+                //TxtBlockContent += $"{App.Subscriber.Name}\n";
                 //youtube.Attach()
 
             });
@@ -123,7 +144,13 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 //}
                 try
                 {
-                    App.CorrectSignIn.Show();
+                    for (int i = 0; i < youtubeShowAlls.Count; i++)
+                    {
+                        if (youtubeShowAlls[i].Title == App.SignInYoutuberName)
+                        {
+                            youtubeShowAlls[i].Show();
+                        }
+                    }
                 }
                 catch (Exception)
                 {

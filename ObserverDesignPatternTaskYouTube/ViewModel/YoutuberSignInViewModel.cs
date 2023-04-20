@@ -73,6 +73,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                     if (item.Name == Name && item.Password == Password)
                     {
                         YouTubeWindow youTubeWindow = new YouTubeWindow();
+                        App.SignInYoutuberName = item.Name;
                         youTubeWindow.Show();
                     }
                 }
