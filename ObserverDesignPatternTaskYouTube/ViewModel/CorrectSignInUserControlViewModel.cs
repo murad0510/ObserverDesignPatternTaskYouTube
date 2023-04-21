@@ -22,6 +22,15 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         public Subscriber Subscriber { get; set; }
         public string YoutuberName { get; set; }
 
+        private string selectedItemListBox;
+
+        public string SelectedItemListBox
+        {
+            get { return selectedItemListBox; }
+            set { selectedItemListBox = value; OnPropertyChanged(); }
+        }
+
+
         private string b;
 
         public string A
@@ -29,6 +38,15 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             get { return b; }
             set { b = value; OnPropertyChanged(); }
         }
+
+        private List<Youtuber> youtuber;
+
+        public List<Youtuber> ItemSource
+        {
+            get { return youtuber; }
+            set { youtuber = value; OnPropertyChanged(); }
+        }
+
 
 
         private string txtBlockContent;
@@ -98,17 +116,21 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                     //App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUser);
                 }
             }
+            ItemSource = App.Youtuber;
             checkboxContent = true;
             var youtube = new Subject();
             Checked = new RelayCommand((b) =>
             {
                 for (int i = 0; i < youtubeShowAlls.Count; i++)
                 {
-                    if (youtubeShowAlls[i].Title == "OPPO")
+                    if (youtubeShowAlls[i].Title == SelectedItemListBox)
                     {
                         youtubeShowAlls[i].MyTxtBlock.Text += $"{App.Subscriber.Name}\n";
+                        MessageBox.Show("Abone oldunuz");
+                        break;
                     }
                 }
+                
                 //for (int i = 0; i < App.YoutubeTitles.Count; i++)
                 //{
                 //    if (App.YoutubeTitles[i] == YoutuberName)
@@ -148,6 +170,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                     {
                         if (youtubeShowAlls[i].Title == App.SignInYoutuberName)
                         {
+                            MessageBox.Show($"{youtubeShowAlls[i].MyTxtBlock.Text}");
                             youtubeShowAlls[i].Show();
                         }
                     }

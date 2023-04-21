@@ -79,26 +79,31 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                             YoutuberSignInViewModel youtuberSignIn = new YoutuberSignInViewModel();
                             b = !b;
                         }
-                        CorrectSignInUserControlViewModel correctSignInUserControl1 = new CorrectSignInUserControlViewModel();
-                        correctSignInUserControl1.YoutuberName = item.Name;
-                        App.Subscriber = item;
-                        
+
                         for (int i = 0; i < App.Youtuber.Count; i++)
                         {
                             CorrectSignInUserControl correctSignInUserControl = new CorrectSignInUserControl();
-                            if (AppSubscriberWindowClear)
-                            {
-                                App.SubscriberWindow.MyStackPanel.Children.Clear();
-                                AppSubscriberWindowClear = !AppSubscriberWindowClear;
-                            }
 
-                            //YoutubeShowAllSubscriberWindow youtubeShowAll = new YoutubeShowAllSubscriberWindow();
-                            //youtubeShowAll.Title = correctSignInUserControl.Content.ToString();
-                            //correctSignInUserControl1.YoutubeShowAlls.Add(youtubeShowAll);
-                            
-                            correctSignInUserControl.Margin = new Thickness(100, 30, 0, 0);
-                            App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUserControl);
+                            //if (AppSubscriberWindowClear)
+                            //{
+                            //    App.SubscriberWindow.MyStackPanel.Children.Clear();
+                            //    AppSubscriberWindowClear = !AppSubscriberWindowClear;
+                            //}
+
+                            ////YoutubeShowAllSubscriberWindow youtubeShowAll = new YoutubeShowAllSubscriberWindow();
+                            ////youtubeShowAll.Title = correctSignInUserControl.Content.ToString();
+                            ////correctSignInUserControl1.YoutubeShowAlls.Add(youtubeShowAll);
+
+                            //correctSignInUserControl.Margin = new Thickness(100, 30, 0, 0);
+                            //App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUserControl);
                         }
+
+                        CorrectSignInUserControl signInUserControl = new CorrectSignInUserControl();
+                        CorrectSignInUserControlViewModel correctSignInUserControl1 = new CorrectSignInUserControlViewModel();
+                        correctSignInUserControl1.YoutuberName = item.Name;
+                        App.Subscriber = item;
+                        App.SubscriberWindow.MyStackPanel.Children.Clear();
+                        App.SubscriberWindow.MyStackPanel.Children.Add(signInUserControl);
                     }
                 }
             });

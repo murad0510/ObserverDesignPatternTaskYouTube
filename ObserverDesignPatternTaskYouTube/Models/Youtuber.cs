@@ -27,5 +27,10 @@ namespace ObserverDesignPatternTaskYouTube.Models
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

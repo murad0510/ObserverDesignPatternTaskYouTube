@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:ObserverDesignPatternTaskYouTube.Views.UserControls" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             Width="900" Height="50" Background="White" x:Name="mo">
+             Width="900" Height="200" Background="White" x:Name="mo">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="16*"/>
             <ColumnDefinition Width="9*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel x:Name="My" Grid.ColumnSpan="2">
+        </Grid.ColumnDefinitions>-->
+        <!--<StackPanel x:Name="My" Grid.ColumnSpan="2">
             <CheckBox Content="{Binding A,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center">
                 <CheckBox.RenderTransform>
                     <ScaleTransform ScaleX="3.5" ScaleY="3.5"></ScaleTransform>
@@ -24,6 +24,16 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </CheckBox>
-        </StackPanel>
+        </StackPanel>-->
+        
+        <Canvas>
+            <ListBox Canvas.Left="150" Canvas.Top="5" Width="600" DisplayMemberPath="{Binding Youtuber.Name}" SelectedItem="{Binding SelectedItemListBox}" ItemsSource="{Binding ItemSource}" Height="190" Background="Blue">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding Checked}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+        </Canvas>
     </Grid>
 </UserControl>
