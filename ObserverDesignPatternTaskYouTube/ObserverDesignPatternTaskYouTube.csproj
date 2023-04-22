@@ -85,6 +85,9 @@
     <Compile Include="Views\UserControls\YoutubeNotifyUserControl.xaml.cs">
       <DependentUpon>YoutubeNotifyUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\YoutuberShowSubscriberUserControl.xaml.cs">
+      <DependentUpon>YoutuberShowSubscriberUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\YoutubeSignInUserControl.xaml.cs">
       <DependentUpon>YoutubeSignInUserControl.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\YoutubeNotifyUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YoutuberShowSubscriberUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

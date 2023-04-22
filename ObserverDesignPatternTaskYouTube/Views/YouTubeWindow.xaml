@@ -7,9 +7,11 @@
         mc:Ignorable="d"
         Title="YouTubeWindow" Height="450" Width="800">
     <Grid>
-        <Canvas>
-            <Button Command="{Binding AddNewPost}" Canvas.Top="90" Canvas.Left="190" Width="400" Content="Add new post" FontSize="40" FontFamily="Comic Sans MS" Height="100"></Button>
-            <Button Command="{Binding ShowAllSubscriber}" Canvas.Top="250" Canvas.Left="190" Width="400" Content="Show all subscriber" FontSize="40" FontFamily="Comic Sans MS" Height="100"></Button>
-        </Canvas>
+        <StackPanel x:Name="YoutubeShowAllSubscriberWindow">
+            <Canvas>
+                <Button Command="{Binding AddNewPost}" Canvas.Top="90" Canvas.Left="190" Width="400" Content="Add new post" FontSize="40" FontFamily="Comic Sans MS" Height="100"></Button>
+                <Button Command="{Binding ShowAllSubscriber}" Canvas.Top="250" Canvas.Left="190" Width="400" Content="Show all subscriber" FontSize="40" FontFamily="Comic Sans MS" Height="100"></Button>
+            </Canvas>
+        </StackPanel>
     </Grid>
 </Window>

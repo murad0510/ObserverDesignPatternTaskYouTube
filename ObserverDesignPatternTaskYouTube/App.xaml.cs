@@ -23,6 +23,7 @@ namespace ObserverDesignPatternTaskYouTube
         public static List<Youtuber> Youtuber { get; set; }
         public static Subscriber Subscriber { get; set; }
         public static string SignInYoutuberName { get; set; }
+        public static YouTubeWindow YoutuberShow { get; set; }
 
         public static List<YoutubeShowAllSubscriberWindow> YoutubeShowAlls { get; set; }
         public static List<string> YoutubeTitles { get; set; }

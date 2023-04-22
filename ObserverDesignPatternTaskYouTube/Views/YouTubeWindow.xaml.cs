@@ -26,6 +26,7 @@ namespace ObserverDesignPatternTaskYouTube.Views
             CorrectSignInUserControlViewModel correctSignInUserControlViewModel = new CorrectSignInUserControlViewModel();
             //YoutubeShowAllSubscriberWindow youtubeShowAllSubscriber= new YoutubeShowAllSubscriberWindow();
             //correctSignInUserControlViewModel.CorrectSignIn = youtubeShowAllSubscriber;
+            App.YoutuberShow = this;
             this.DataContext = correctSignInUserControlViewModel;
         }
     }

@@ -85,6 +85,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         }
 
         static bool a = true;
+        static bool notSubs = false;
         static int indexer = 0;
         static bool checkboxContent = false;
         static List<YoutubeShowAllSubscriberWindow> youtubeShowAlls = new List<YoutubeShowAllSubscriberWindow>();
@@ -125,12 +126,13 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 {
                     if (youtubeShowAlls[i].Title == SelectedItemListBox)
                     {
+                        //TxtBlockContent = App.Subscriber.Name;
                         youtubeShowAlls[i].MyTxtBlock.Text += $"{App.Subscriber.Name}\n";
                         MessageBox.Show("Abone oldunuz");
                         break;
                     }
                 }
-                
+
                 //for (int i = 0; i < App.YoutubeTitles.Count; i++)
                 //{
                 //    if (App.YoutubeTitles[i] == YoutuberName)
@@ -159,25 +161,48 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
 
             ShowAllSubscriber = new RelayCommand((b) =>
             {
-                //if (a)
-                //{
-                //    YoutubeShowAllSubscriberWindow youtubeShowAllSubscriberWindow = new YoutubeShowAllSubscriberWindow();
-                //    a = !a;
-                //}
-                try
+                if (youtubeShowAlls.Count == 0)
+                {
+                    MessageBox.Show("Abuneciniz yoxdur!!!");
+                }
+                else
                 {
                     for (int i = 0; i < youtubeShowAlls.Count; i++)
                     {
-                        if (youtubeShowAlls[i].Title == App.SignInYoutuberName)
+                        try
                         {
-                            MessageBox.Show($"{youtubeShowAlls[i].MyTxtBlock.Text}");
-                            youtubeShowAlls[i].Show();
+                            if (youtubeShowAlls[i].Title == App.SignInYoutuberName)
+                            {
+                                if (youtubeShowAlls[i].MyTxtBlock.Text != string.Empty)
+                                {
+                                    YoutuberShowSubscriberUserControl subscriberUserControl = new YoutuberShowSubscriberUserControl();
+
+                                    string a = youtubeShowAlls[i].MyTxtBlock.Text;
+                                    //youtubeShowAlls[i] = new YoutubeShowAllSubscriberWindow();
+                                    //youtubeShowAlls[i].Title = App.SignInYoutuberName;
+                                    //youtubeShowAlls[i].MyTxtBlock.Text = a;
+                                    //MessageBox.Show($"{youtubeShowAlls[i].MyTxtBlock.Text}");
+                                    //youtubeShowAlls[i].Show();
+                                    //TxtBlockContent = a;
+                                    subscriberUserControl.MyTxtBlock.Text = a;
+                                    notSubs = true;
+                                    App.YoutuberShow.YoutubeShowAllSubscriberWindow.Children.Clear();
+                                    App.YoutuberShow.YoutubeShowAllSubscriberWindow.Children.Add(subscriberUserControl);
+                                    //MessageBox.Show($"{subscriberUserControl.MyTxtBlock.Text}");
+
+                                    break;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Abuneciniz yoxdur!!!");
+                                }
+                            }
+
+                        }
+                        catch (Exception)
+                        {
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Abuneciniz yoxdur!!!");
                 }
             });
         }
