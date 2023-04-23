@@ -15,6 +15,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
     {
         public RelayCommand SingButtonClicked { get; set; }
         public RelayCommand RegisterButtonClicked { get; set; }
+        public RelayCommand BackButton { get; set; }
 
 
         private string name;
@@ -70,9 +71,10 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         {
             SingButtonClicked = new RelayCommand((a) =>
             {
-                foreach (var item in subscribers)
+
+                for (int i = 0; i < subscribers.Count; i++)
                 {
-                    if (item.Name == Name && item.Password == Password)
+                    if (subscribers[i].Name == Name && subscribers[i].Password == Password)
                     {
                         if (!b)
                         {
@@ -80,7 +82,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                             b = !b;
                         }
 
-                        for (int i = 0; i < App.Youtuber.Count; i++)
+                        for (int k = 0; k < App.Youtuber.Count; k++)
                         {
                             CorrectSignInUserControl correctSignInUserControl = new CorrectSignInUserControl();
 
@@ -100,12 +102,30 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
 
                         CorrectSignInUserControl signInUserControl = new CorrectSignInUserControl();
                         CorrectSignInUserControlViewModel correctSignInUserControl1 = new CorrectSignInUserControlViewModel();
-                        correctSignInUserControl1.YoutuberName = item.Name;
-                        App.Subscriber = item;
+                        correctSignInUserControl1.YoutuberName = subscribers[i].Name;
+                        App.Subscriber = subscribers[i];
                         App.SubscriberWindow.MyStackPanel.Children.Clear();
                         App.SubscriberWindow.MyStackPanel.Children.Add(signInUserControl);
+                        Name = string.Empty;
+                        Password = string.Empty;
+                        break;
+                    }
+                    else if (i == subscribers.Count - 1)
+                    {
+                        MessageBox.Show("Incorrect username or password!!!");
                     }
                 }
+            });
+
+            BackButton = new RelayCommand((a) =>
+            {
+                //MessageBox.Show("a");
+                SubscriberWindow subscriber = new SubscriberWindow();
+                App.SubscriberWindow.Close();
+                subscriber.ShowDialog();
+                App.SubscriberWindow = subscriber;
+                //App.SubscriberWindow.MyStackPanel.Children.Clear();
+                //App.SubscriberWindow.MyStackPanel.Children.Add(subscriber);
             });
 
             RegisterButtonClicked = new RelayCommand((a) =>
@@ -114,7 +134,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 subscriber.Name = RegisterName;
                 subscriber.Password = RegisterPassword;
                 subscribers.Add(subscriber);
-                MessageBox.Show("Successfully register");
+                MessageBox.Show("You have successfully registered");
             });
         }
     }

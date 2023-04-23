@@ -19,13 +19,13 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             SubscriberButtonClicked = new RelayCommand((a) =>
             {
                 SubscriberWindow subscriberWindow= new SubscriberWindow();
-                subscriberWindow.Show();
+                subscriberWindow.ShowDialog();
             });
 
             YouTubeButtonClicked = new RelayCommand((a) =>
             {
                 YoutuberSignInWindow youtuberSignInWindow= new YoutuberSignInWindow();
-                youtuberSignInWindow.Show();
+                youtuberSignInWindow.ShowDialog();
             });
 
         }

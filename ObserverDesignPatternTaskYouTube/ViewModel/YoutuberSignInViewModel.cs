@@ -4,6 +4,7 @@ using ObserverDesignPatternTaskYouTube.Views;
 using ObserverDesignPatternTaskYouTube.Views.UserControls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
     public class YoutuberSignInViewModel : BaseViewModel
     {
         public RelayCommand SingButtonClicked { get; set; }
+        public RelayCommand BackButton { get; set; }
 
 
         private string name;
@@ -33,7 +35,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             set { password = value; OnPropertyChanged(); }
         }
 
-        static List<Youtuber> youtubers = new List<Youtuber>
+        static ObservableCollection<Youtuber> youtubers = new ObservableCollection<Youtuber>
         {
             new Youtuber()
             {
@@ -68,13 +70,20 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             }
             SingButtonClicked = new RelayCommand((a) =>
             {
-                foreach (var item in youtubers)
+                for (int i = 0; i < youtubers.Count; i++)
                 {
-                    if (item.Name == Name && item.Password == Password)
+                    if (youtubers[i].Name == Name && youtubers[i].Password == Password)
                     {
                         YouTubeWindow youTubeWindow = new YouTubeWindow();
-                        App.SignInYoutuberName = item.Name;
-                        youTubeWindow.Show();
+                        App.SignInYoutuberName = youtubers[i].Name;
+                        youTubeWindow.ShowDialog();
+                        Name = string.Empty;
+                        Password=string.Empty;
+                        break;
+                    }
+                    else if (i == youtubers.Count - 1)
+                    {
+                        MessageBox.Show("Incorrect username or password!!!");
                     }
                 }
             });

@@ -4,6 +4,7 @@ using ObserverDesignPatternTaskYouTube.Views;
 using ObserverDesignPatternTaskYouTube.Views.UserControls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,6 +21,9 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         public RelayCommand ShowAllSubscriber { get; set; }
         public RelayCommand AddNewPost { get; set; }
         public Subscriber Subscriber { get; set; }
+        public RelayCommand BackButton { get; set; }
+        public RelayCommand BackButtonYoutube { get; set; }
+        public RelayCommand UnChecked { get; set; }
         public string YoutuberName { get; set; }
 
         private string selectedItemListBox;
@@ -30,6 +34,15 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             set { selectedItemListBox = value; OnPropertyChanged(); }
         }
 
+        private string selectedItemListBoxUnsubscribe;
+
+        public string SelectedItemListBoxUnsubscribe
+        {
+            get { return selectedItemListBoxUnsubscribe; }
+            set { selectedItemListBoxUnsubscribe = value; OnPropertyChanged(); }
+        }
+
+
 
         private string b;
 
@@ -39,14 +52,21 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             set { b = value; OnPropertyChanged(); }
         }
 
-        private List<Youtuber> youtuber;
+        private ObservableCollection<Youtuber> youtuber;
 
-        public List<Youtuber> ItemSource
+        public ObservableCollection<Youtuber> ItemSource
         {
             get { return youtuber; }
             set { youtuber = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<Youtuber> itemSourceUnsubscribe = new ObservableCollection<Youtuber>();
+
+        public ObservableCollection<Youtuber> ItemSourceUnsubscribe
+        {
+            get { return itemSourceUnsubscribe; }
+            set { itemSourceUnsubscribe = value; OnPropertyChanged(); }
+        }
 
 
         private string txtBlockContent;
@@ -89,8 +109,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         static int indexer = 0;
         static bool checkboxContent = false;
         static List<YoutubeShowAllSubscriberWindow> youtubeShowAlls = new List<YoutubeShowAllSubscriberWindow>();
-        static List<string> youtubeTitles = new List<string>();
-
+        static List<Youtuber> youtubers = new List<Youtuber>();
         public CorrectSignInUserControlViewModel()
         {
             if (checkboxContent)
@@ -122,13 +141,32 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             var youtube = new Subject();
             Checked = new RelayCommand((b) =>
             {
+                bool a = false;
                 for (int i = 0; i < youtubeShowAlls.Count; i++)
                 {
                     if (youtubeShowAlls[i].Title == SelectedItemListBox)
                     {
-                        //TxtBlockContent = App.Subscriber.Name;
-                        youtubeShowAlls[i].MyTxtBlock.Text += $"{App.Subscriber.Name}\n";
-                        MessageBox.Show("Abone oldunuz");
+                        for (int k = 0; k < App.Subscriber.Youtubers.Count; k++)
+                        {
+                            if (App.Subscriber.Youtubers[k].Name == SelectedItemListBox)
+                            {
+                                a = true;
+                            }
+                        }
+                        if (!a)
+                        {
+                            youtubeShowAlls[i].MyTxtBlock.Text += $"{App.Subscriber.Name}\n";
+
+                            App.Subscriber.Youtubers.Add(App.Youtuber[i]);
+
+                            ItemSourceUnsubscribe = App.Subscriber.Youtubers;
+
+                            MessageBox.Show($"You have subscribed to the channel called {SelectedItemListBox}");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Siz {SelectedItemListBox} adli kanala onsuzda abunesiniz!!!");
+                        }
                         break;
                     }
                 }
@@ -159,11 +197,17 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 youtube.SomeBusinessLogic();
             });
 
+            BackButton = new RelayCommand((a) =>
+            {
+                App.SubscriberWindow.MyStackPanel.Children.Clear();
+                App.SubscriberWindow.MyStackPanel.Children.Add(App.SignInUseControl);
+            });
+
             ShowAllSubscriber = new RelayCommand((b) =>
             {
                 if (youtubeShowAlls.Count == 0)
                 {
-                    MessageBox.Show("Abuneciniz yoxdur!!!");
+                    MessageBox.Show("You have no subscribers!!!");
                 }
                 else
                 {
@@ -194,7 +238,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Abuneciniz yoxdur!!!");
+                                    MessageBox.Show("You have no subscribers!!!");
                                 }
                             }
 
@@ -202,6 +246,26 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                         catch (Exception)
                         {
                         }
+                    }
+                }
+            });
+
+            BackButtonYoutube = new RelayCommand((a) =>
+            {
+                App.YoutuberShow.Close();
+                YouTubeWindow youTubeWindow = new YouTubeWindow();
+                youTubeWindow.ShowDialog();
+                App.YoutuberShow = youTubeWindow;
+            });
+
+            UnChecked = new RelayCommand((a) =>
+            {
+                for (int i = 0; i < App.Subscriber.Youtubers.Count; i++)
+                {
+                    if (App.Subscriber.Youtubers[i].Name == SelectedItemListBoxUnsubscribe)
+                    {
+                        App.Subscriber.Youtubers.Remove(App.Subscriber.Youtubers[i]);
+                        break;
                     }
                 }
             });

@@ -26,7 +26,6 @@ namespace ObserverDesignPatternTaskYouTube.Views.UserControls
             InitializeComponent();
 
             SignInUserControlViewModel signInUserControlViewModel = new SignInUserControlViewModel();
-
             this.DataContext = signInUserControlViewModel;
         }
     }

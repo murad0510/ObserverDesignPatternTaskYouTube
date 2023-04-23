@@ -31,6 +31,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 RegisterUserControl registerUserControl = new RegisterUserControl();
                 SubscriberWindow.MyStackPanel.Children.Clear();
                 SubscriberWindow.MyStackPanel.Children.Add(registerUserControl);
+                App.SubscriberWindow = SubscriberWindow;
             });
         }
     }
