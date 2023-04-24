@@ -48,6 +48,15 @@
                     <ImageBrush Stretch="Uniform" ImageSource="/Images/Back button.png"></ImageBrush>
                 </Button.Background>
             </Button>
+
+            <Button Command="{Binding SharedChannelButtonClicked}" Width="130" Background="DeepSkyBlue" FontSize="9" FontStyle="Oblique" Content="Videos shared by your channels" Canvas.Top="55" Height="340" Canvas.Left="10">
+                
+            </Button>
+
+            <Button Command="{Binding SharedChannelButtonClicked}" Width="130" Background="DeepSkyBlue" FontSize="9" FontStyle="Oblique" Content="Videos shared by your channels" Canvas.Top="55" Height="340" Canvas.Right="10">
+
+            </Button>
+
         </Canvas>
     </Grid>
 </UserControl>

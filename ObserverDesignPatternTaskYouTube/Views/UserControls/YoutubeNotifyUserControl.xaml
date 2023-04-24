@@ -5,12 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ObserverDesignPatternTaskYouTube.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             Width="800" Height="200" Background="White">
     <Grid>
         <Canvas>
-            <Label Width="120" Content="Title" FontSize="30" Height="50"></Label>
-            <Label Content="Picture" FontSize="30" Canvas.Left="300"></Label>
-            <Label Content="Youtuber" FontSize="30" Canvas.Right="30"></Label>
+            <!--<Label Width="120" Content="Title" Canvas.Top="80" Canvas.Left="30" FontSize="30" Height="50"></Label>
+            <Label Content="Picture" FontSize="30" Canvas.Top="80" Canvas.Left="300"></Label>
+            <Label Content="Youtuber" FontSize="30" Canvas.Top="80" Canvas.Right="30"></Label>-->
+
+            <Label Background="Black" Height="200" Width="200" Canvas.Top="0" Canvas.Left="14"></Label>
+
+            <TextBlock Width="200" Height="10" Background="Blue" Canvas.Left="240">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <Label Background="Black" Height="200" Width="200" Canvas.Top="0" Canvas.Right="14"></Label>
+
+            <TextBlock Width="200" Height="10" Background="Blue" Canvas.Left="570">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
         </Canvas>
     </Grid>
 </UserControl>

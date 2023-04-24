@@ -24,6 +24,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         public RelayCommand BackButton { get; set; }
         public RelayCommand BackButtonYoutube { get; set; }
         public RelayCommand UnChecked { get; set; }
+        public RelayCommand SharedChannelButtonClicked { get; set; }
         public string YoutuberName { get; set; }
 
         private string selectedItemListBox;
@@ -137,6 +138,14 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 }
             }
             ItemSource = App.Youtuber;
+            if (App.Subscriber != null)
+            {
+                if (App.Subscriber.Youtubers.Count > 0)
+                {
+                    ItemSourceUnsubscribe = App.Subscriber.Youtubers;
+                }
+            }
+
             checkboxContent = true;
             var youtube = new Subject();
             Checked = new RelayCommand((b) =>
@@ -264,10 +273,26 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 {
                     if (App.Subscriber.Youtubers[i].Name == SelectedItemListBoxUnsubscribe)
                     {
+                        MessageBox.Show($"You have unsubscribed from {SelectedItemListBoxUnsubscribe} channel");
+                        for (int k = 0; k < youtubeShowAlls.Count; k++)
+                        {
+                            if (youtubeShowAlls[k].Title == SelectedItemListBoxUnsubscribe)
+                            {
+                                youtubeShowAlls[k].MyTxtBlock.Text = youtubeShowAlls[k].MyTxtBlock.Text.Replace(App.Subscriber.Name, null);
+                                youtubeShowAlls[k].MyTxtBlock.Text = youtubeShowAlls[k].MyTxtBlock.Text.Trim();
+                            }
+                        }
                         App.Subscriber.Youtubers.Remove(App.Subscriber.Youtubers[i]);
                         break;
                     }
                 }
+            });
+
+            SharedChannelButtonClicked = new RelayCommand((a) =>
+            {
+                YoutubeNotifyUserControl youtubeNotifyUser = new YoutubeNotifyUserControl();
+                App.SubscriberWindow.MyStackPanel.Children.Clear();
+                App.SubscriberWindow.MyStackPanel.Children.Add(youtubeNotifyUser);
             });
         }
     }

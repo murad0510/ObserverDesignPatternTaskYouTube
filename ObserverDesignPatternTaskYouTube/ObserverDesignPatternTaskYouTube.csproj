@@ -76,6 +76,9 @@
     <Compile Include="Views\UserControls\RegisterUserControl.xaml.cs">
       <DependentUpon>RegisterUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ShareVideoTitlePIctureYoutuberName.xaml.cs">
+      <DependentUpon>ShareVideoTitlePIctureYoutuberName.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\SignInUseControl.xaml.cs">
       <DependentUpon>SignInUseControl.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\RegisterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ShareVideoTitlePIctureYoutuberName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

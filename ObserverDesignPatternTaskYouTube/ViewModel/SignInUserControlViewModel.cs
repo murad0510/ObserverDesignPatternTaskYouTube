@@ -76,6 +76,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 {
                     if (subscribers[i].Name == Name && subscribers[i].Password == Password)
                     {
+                        App.Subscriber = subscribers[i];
                         if (!b)
                         {
                             YoutuberSignInViewModel youtuberSignIn = new YoutuberSignInViewModel();
@@ -103,7 +104,6 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                         CorrectSignInUserControl signInUserControl = new CorrectSignInUserControl();
                         CorrectSignInUserControlViewModel correctSignInUserControl1 = new CorrectSignInUserControlViewModel();
                         correctSignInUserControl1.YoutuberName = subscribers[i].Name;
-                        App.Subscriber = subscribers[i];
                         App.SubscriberWindow.MyStackPanel.Children.Clear();
                         App.SubscriberWindow.MyStackPanel.Children.Add(signInUserControl);
                         Name = string.Empty;

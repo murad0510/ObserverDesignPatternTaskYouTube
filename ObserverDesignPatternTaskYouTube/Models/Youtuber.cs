@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObserverDesignPatternTaskYouTube.Models
 {
-    public class Youtuber:ISubject
+    public class Youtuber : ISubject
     {
         public string Name { get; set; }
         public string Password { get; set; }

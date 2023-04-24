@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ObserverDesignPatternTaskYouTube.Views"
         mc:Ignorable="d"
-        Title="SubscriberWindow" Height="500" Width="900">
+        Title="SubscriberWindow" Height="440" Width="930">
     <Grid>
-        <StackPanel x:Name="MyStackPanel" Height="500" Width="900">
+        <StackPanel x:Name="MyStackPanel" Height="440" Width="920">
             <Canvas>
-                <Button Width="400" Height="100" Command="{Binding SignInButtonClicked}" Canvas.Top="90" Canvas.Left="190" Content="Sign in" FontSize="40"></Button>
-                <Button Width="400" Height="100" Canvas.Top="250" Command="{Binding RegisterButtonClicked}" Canvas.Left="190" Content="Register" FontSize="40"></Button>
+                <Button Width="400" Height="100" Command="{Binding SignInButtonClicked}" Canvas.Top="60" Canvas.Left="250" Content="Sign in" FontSize="40"></Button>
+                <Button Width="400" Height="100" Canvas.Top="250" Command="{Binding RegisterButtonClicked}" Canvas.Left="250" Content="Register" FontSize="40"></Button>
             </Canvas>
         </StackPanel>
     </Grid>
