@@ -99,6 +99,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             {
                 observers.Remove(observer);
             }
+
             public void SomeBusinessLogic()
             {
                 this.Notify();
