@@ -291,6 +291,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             SharedChannelButtonClicked = new RelayCommand((a) =>
             {
                 YoutubeNotifyUserControl youtubeNotifyUser = new YoutubeNotifyUserControl();
+                MessageBox.Show("a");
                 App.SubscriberWindow.MyStackPanel.Children.Clear();
                 App.SubscriberWindow.MyStackPanel.Children.Add(youtubeNotifyUser);
             });
