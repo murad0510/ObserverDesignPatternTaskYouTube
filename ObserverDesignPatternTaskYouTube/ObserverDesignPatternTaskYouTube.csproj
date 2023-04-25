@@ -106,7 +106,7 @@
     <Compile Include="Views\YouTubeWindow.xaml.cs">
       <DependentUpon>YouTubeWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Dictionarys\ElementStyle.xaml">
+    <Page Include="Dictionaries\ElementStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
