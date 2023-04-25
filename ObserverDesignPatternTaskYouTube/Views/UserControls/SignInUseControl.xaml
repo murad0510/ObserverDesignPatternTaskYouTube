@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              Width="900" Height="500" Background="White">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Canvas>
             <Label Content="Name" FontSize="20" Canvas.Top="70" Canvas.Left="290"></Label>
             <TextBox Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Canvas.Top="100" Canvas.Left="290" FontSize="20" Width="300" Height="30" Background="DeepSkyBlue"></TextBox>
@@ -14,7 +20,13 @@
             <Label Content="Password" FontSize="20" Canvas.Top="170" Canvas.Left="290"></Label>
             <TextBox Text="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Canvas.Top="200" Canvas.Left="290" Width="300" Height="30" FontSize="20" Background="DeepSkyBlue"></TextBox>
 
-            <Button Command="{Binding SingButtonClicked}" Content="Sign in" Width="140" Height="50" FontSize="20" Canvas.Bottom="180" Canvas.Left="370"></Button>
+            <Button BorderBrush="Black" BorderThickness="3" Background="DeepSkyBlue" Command="{Binding SingButtonClicked}" Content="Sign in" Width="140" Height="50" FontSize="20" Canvas.Bottom="180" Canvas.Left="370">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
             <Button Width="40" Style="{StaticResource allButtons}" Height="40" Canvas.Left="30" Canvas.Top="30" Command="{Binding BackButton,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <Button.Background>

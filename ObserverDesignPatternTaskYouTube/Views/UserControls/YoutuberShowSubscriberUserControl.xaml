@@ -7,10 +7,17 @@
              mc:Ignorable="d" 
              Height="450" Width="800" Background="White">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+        
         <StackPanel x:Name="YoutuberShowSubscriber">
             <TextBlock Width="500" Name="MyTxtBlock" Height="400" Background="Blue" FontSize="30"></TextBlock>
         </StackPanel>
-
+        
         <Canvas>
             <Button Width="40" Style="{StaticResource allButtons}" Height="40" Canvas.Left="10" Canvas.Top="10" Command="{Binding BackButtonYoutube,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                 <Button.Background>

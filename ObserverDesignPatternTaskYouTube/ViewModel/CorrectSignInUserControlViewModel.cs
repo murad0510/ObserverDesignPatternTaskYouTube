@@ -25,6 +25,9 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
         public RelayCommand BackButtonYoutube { get; set; }
         public RelayCommand UnChecked { get; set; }
         public RelayCommand SharedChannelButtonClicked { get; set; }
+        public RelayCommand ShareVideo { get; set; }
+        public RelayCommand BackButtonUserMainWindow { get; set; }
+        public RelayCommand BackButtonYoutuberMainWindow { get; set; }
         public string YoutuberName { get; set; }
 
         private string selectedItemListBox;
@@ -78,21 +81,32 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
             set { txtBlockContent = value; OnPropertyChanged(); }
         }
 
+        private string videoTitle;
+
+        public string VideoTitle
+        {
+            get { return videoTitle; }
+            set { videoTitle = value; OnPropertyChanged(); }
+        }
+
 
         private static List<IObserver> observers = new List<IObserver>();
         public class Subject : ISubject
         {
-            public void Notify()
+            public void Notify(string videoTitle)
             {
                 foreach (var item in observers)
                 {
-                    item.Update(this);
+                    item.Update(videoTitle);
                 }
             }
 
             public void Attach(ViewModel.IObserver observer)
             {
-                observers.Add(observer);
+                if (!observers.Contains(observer))
+                {
+                    observers.Add(observer);
+                }
             }
 
             public void Detach(ViewModel.IObserver observer)
@@ -100,9 +114,9 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 observers.Remove(observer);
             }
 
-            public void SomeBusinessLogic()
+            public void SomeBusinessLogic(string videoTitle)
             {
-                this.Notify();
+                this.Notify(videoTitle);
             }
         }
 
@@ -131,11 +145,6 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                     {
                         a = !a;
                     }
-                    //youtubeTitles.Add(A);
-                    //CheckBox checkBox = new CheckBox();
-                    //correctSignInUser.Content = "sa";
-                    //correctSignInUser.Margin = new Thickness(0, 0, 0, 10);
-                    //App.SubscriberWindow.MyStackPanel.Children.Add(correctSignInUser);
                 }
             }
             ItemSource = App.Youtuber;
@@ -168,6 +177,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                             youtubeShowAlls[i].MyTxtBlock.Text += $"{App.Subscriber.Name}\n";
 
                             App.Subscriber.Youtubers.Add(App.Youtuber[i]);
+                            youtube.Attach(App.Subscriber);
 
                             ItemSourceUnsubscribe = App.Subscriber.Youtubers;
 
@@ -175,36 +185,24 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                         }
                         else
                         {
-                            MessageBox.Show($"Siz {SelectedItemListBox} adli kanala onsuzda abunesiniz!!!");
+                            MessageBox.Show($"You are subscribed to {SelectedItemListBox} channel!!!");
                         }
                         break;
                     }
                 }
 
-                //for (int i = 0; i < App.YoutubeTitles.Count; i++)
-                //{
-                //    if (App.YoutubeTitles[i] == YoutuberName)
-                //    {
-                //        App.CorrectSignIn = App.YoutubeShowAlls[i];
-                //        break;
-                //    }
-                //    else
-                //    {
-                //        YoutubeShowAllSubscriberWindow youtubeShowAllSubscriberWindow = new YoutubeShowAllSubscriberWindow();
-                //        //App.CorrectSignIn = youtubeShowAllSubscriberWindow;
-                //        App.YoutubeShowAlls.Add(youtubeShowAllSubscriberWindow);
-                //    }
-                //}
-                //a = !a;
-
-                //TxtBlockContent += $"{App.Subscriber.Name}\n";
-                //youtube.Attach()
-
             });
 
             AddNewPost = new RelayCommand((a) =>
             {
-                youtube.SomeBusinessLogic();
+                YoutubeAddNewPostButtinUserControl youtubeAddNewPostButtin = new YoutubeAddNewPostButtinUserControl();
+                App.YoutuberShow.YoutubeShowAllSubscriberWindow.Children.Clear();
+                App.YoutuberShow.YoutubeShowAllSubscriberWindow.Children.Add(youtubeAddNewPostButtin);
+            });
+
+            ShareVideo = new RelayCommand((a) =>
+            {
+                youtube.SomeBusinessLogic(VideoTitle);
             });
 
             BackButton = new RelayCommand((a) =>
@@ -215,7 +213,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
 
             ShowAllSubscriber = new RelayCommand((b) =>
             {
-                if (youtubeShowAlls.Count == 0)
+                if (youtubeShowAlls.Count == 0 || youtubeShowAlls.Count == 2)
                 {
                     MessageBox.Show("You have no subscribers!!!");
                 }
@@ -231,18 +229,12 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                                 {
                                     YoutuberShowSubscriberUserControl subscriberUserControl = new YoutuberShowSubscriberUserControl();
 
-                                    string a = youtubeShowAlls[i].MyTxtBlock.Text;
-                                    //youtubeShowAlls[i] = new YoutubeShowAllSubscriberWindow();
-                                    //youtubeShowAlls[i].Title = App.SignInYoutuberName;
-                                    //youtubeShowAlls[i].MyTxtBlock.Text = a;
-                                    //MessageBox.Show($"{youtubeShowAlls[i].MyTxtBlock.Text}");
-                                    //youtubeShowAlls[i].Show();
-                                    //TxtBlockContent = a;
-                                    subscriberUserControl.MyTxtBlock.Text = a;
+                                    string subscribers = youtubeShowAlls[i].MyTxtBlock.Text;
+
+                                    subscriberUserControl.MyTxtBlock.Text = subscribers;
                                     notSubs = true;
                                     App.YoutuberShow.YoutubeShowAllSubscriberWindow.Children.Clear();
                                     App.YoutuberShow.YoutubeShowAllSubscriberWindow.Children.Add(subscriberUserControl);
-                                    //MessageBox.Show($"{subscriberUserControl.MyTxtBlock.Text}");
 
                                     break;
                                 }
@@ -284,6 +276,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                             }
                         }
                         App.Subscriber.Youtubers.Remove(App.Subscriber.Youtubers[i]);
+                        youtube.Detach(App.Subscriber);
                         break;
                     }
                 }
@@ -295,7 +288,16 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                 ShareVideoTitlePIctureYoutuberName shareVideoTitlePIcture = new ShareVideoTitlePIctureYoutuberName();
                 App.SubscriberWindow.MyStackPanel.Children.Clear();
                 App.SubscriberWindow.MyStackPanel.Children.Add(shareVideoTitlePIcture);
-                App.SubscriberWindow.MyStackPanel.Children.Add(youtubeNotifyUser);
+                for (int i = 0; i < App.Subscriber.YoutubeNotifyUser.Count; i++)
+                {
+                    App.SubscriberWindow.MyStackPanel.Children.Add(App.Subscriber.YoutubeNotifyUser[i]);
+                }
+            });
+
+            BackButtonUserMainWindow = new RelayCommand((a) =>
+            {
+                App.SubscriberWindow.MyStackPanel.Children.Clear();
+                App.SubscriberWindow.MyStackPanel.Children.Add(App.CorrectSignInUserControl);
             });
         }
     }

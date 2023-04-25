@@ -5,12 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ObserverDesignPatternTaskYouTube.Views.UserControls"
              mc:Ignorable="d" 
-             Width="800" Height="50" Background="White" Margin="0,0,0,10">
+             Width="800" Height="70" Background="White" Margin="0,0,0,10">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Canvas>
-            <Label Width="120" Content="Title" Canvas.Top="1" Canvas.Left="50" FontSize="30" Height="50"></Label>
-            <Label Content="Picture" FontSize="30" Canvas.Top="1" Canvas.Left="330"></Label>
-            <Label Content="Youtuber" FontSize="30" Canvas.Top="1" Canvas.Right="30"></Label>
+            <Label Width="120" Content="Title" Canvas.Bottom="0" Canvas.Left="145" FontSize="30" Height="50"></Label>
+
+            <Label Content="Youtuber" FontSize="30" Canvas.Bottom="0"  Canvas.Right="145"></Label>
+
+            <Button Width="40" Style="{StaticResource allButtons}" Height="40" Canvas.Left="8" Canvas.Top="8" Command="{Binding BackButtonUserMainWindow,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Images/Back button.png"></ImageBrush>
+                </Button.Background>
+            </Button>
+
         </Canvas>
     </Grid>
 </UserControl>

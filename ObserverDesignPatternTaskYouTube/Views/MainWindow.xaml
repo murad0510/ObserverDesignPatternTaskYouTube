@@ -7,8 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Canvas>
-            <Button Canvas.Top="90" Canvas.Left="180" Width="450" Height="100" Command="{Binding SubscriberButtonClicked}" Content="Subscriber" FontSize="40"></Button>
+            <Button Background="DeepSkyBlue" BorderThickness="3" BorderBrush="Black" Canvas.Top="90" Canvas.Left="180" Width="450" Height="100" Command="{Binding SubscriberButtonClicked}" Content="Subscriber" FontSize="40">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Button Canvas.Bottom="90" Style="{StaticResource allButton}" Canvas.Left="180" Command="{Binding YouTubeButtonClicked}" FontSize="40" Width="450" Height="100" Foreground="Red">
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="/Images/Youtube word.png"></ImageBrush>

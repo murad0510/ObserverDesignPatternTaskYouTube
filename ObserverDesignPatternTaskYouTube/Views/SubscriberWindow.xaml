@@ -7,10 +7,28 @@
         mc:Ignorable="d"
         Title="SubscriberWindow" Height="440" Width="930">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <StackPanel x:Name="MyStackPanel" Height="440" Width="920">
             <Canvas>
-                <Button Width="400" Height="100" Command="{Binding SignInButtonClicked}" Canvas.Top="60" Canvas.Left="250" Content="Sign in" FontSize="40"></Button>
-                <Button Width="400" Height="100" Canvas.Top="250" Command="{Binding RegisterButtonClicked}" Canvas.Left="250" Content="Register" FontSize="40"></Button>
+                <Button Width="400" Height="100" Background="DeepSkyBlue" BorderBrush="Black" BorderThickness="2" Command="{Binding SignInButtonClicked}" Canvas.Top="60" Canvas.Left="250" Content="Sign in" FontSize="40">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Width="400" Height="100" Background="DeepSkyBlue" BorderBrush="Black" BorderThickness="2" Canvas.Top="250" Command="{Binding RegisterButtonClicked}" Canvas.Left="250" Content="Register" FontSize="40">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Canvas>
         </StackPanel>
     </Grid>

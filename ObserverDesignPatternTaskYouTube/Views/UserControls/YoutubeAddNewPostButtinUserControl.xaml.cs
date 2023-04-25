@@ -1,4 +1,4 @@
-﻿using ObserverDesignPatternTaskYouTube.Models;
+﻿using ObserverDesignPatternTaskYouTube.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace ObserverDesignPatternTaskYouTube.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for YoutubeNotifyUserControl.xaml
+    /// Interaction logic for YoutubeAddNewPostButtinUserControl.xaml
     /// </summary>
-    public partial class YoutubeNotifyUserControl : UserControl
+    public partial class YoutubeAddNewPostButtinUserControl : UserControl
     {
-        public YoutubeNotifyUserControl()
+        public YoutubeAddNewPostButtinUserControl()
         {
             InitializeComponent();
-            Subscriber subscriber = new Subscriber();
-            this.DataContext = subscriber;
+            CorrectSignInUserControlViewModel correctSignInUserControl = new CorrectSignInUserControlViewModel();
+            this.DataContext = correctSignInUserControl;
         }
     }
 }

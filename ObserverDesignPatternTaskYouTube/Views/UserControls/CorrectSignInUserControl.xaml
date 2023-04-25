@@ -8,24 +8,12 @@
              mc:Ignorable="d" 
              Width="900" Height="400" Background="White" x:Name="mo">
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="16*"/>
-            <ColumnDefinition Width="9*"/>
-        </Grid.ColumnDefinitions>-->
-        <!--<StackPanel x:Name="My" Grid.ColumnSpan="2">
-            <CheckBox Content="{Binding A,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center">
-                <CheckBox.RenderTransform>
-                    <ScaleTransform ScaleX="3.5" ScaleY="3.5"></ScaleTransform>
-                </CheckBox.RenderTransform>
-
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Checked">
-                        <i:InvokeCommandAction Command="{Binding Checked}"></i:InvokeCommandAction>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </CheckBox>
-        </StackPanel>-->
-        
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Canvas>
             <ListBox Canvas.Left="150" Canvas.Top="5" Width="600" DisplayMemberPath="{Binding Youtuber.Name}" SelectedItem="{Binding SelectedItemListBox}" ItemsSource="{Binding ItemSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="190" Background="Blue">
                 <i:Interaction.Triggers>
@@ -50,11 +38,19 @@
             </Button>
 
             <Button Command="{Binding SharedChannelButtonClicked}" Width="130" Background="DeepSkyBlue" FontSize="9" FontStyle="Oblique" Content="Videos shared by your channels" Canvas.Top="55" Height="340" Canvas.Left="10">
-                
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <Button Command="{Binding SharedChannelButtonClicked}" Width="130" Background="DeepSkyBlue" FontSize="9" FontStyle="Oblique" Content="Videos shared by your channels" Canvas.Top="55" Height="340" Canvas.Right="10">
-
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
         </Canvas>

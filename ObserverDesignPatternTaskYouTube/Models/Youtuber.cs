@@ -23,7 +23,7 @@ namespace ObserverDesignPatternTaskYouTube.Models
             throw new NotImplementedException();
         }
 
-        public void Notify()
+        public void Notify(string videoTitle)
         {
             throw new NotImplementedException();
         }

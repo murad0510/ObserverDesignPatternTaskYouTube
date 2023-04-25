@@ -7,10 +7,28 @@
         mc:Ignorable="d"
         Title="YouTubeWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <StackPanel x:Name="YoutubeShowAllSubscriberWindow">
             <Canvas>
-                <Button Command="{Binding AddNewPost}" Canvas.Top="90" Canvas.Left="190" Width="400" Content="Add new post" FontSize="40" FontFamily="Comic Sans MS" Height="100"></Button>
-                <Button Command="{Binding ShowAllSubscriber}" Canvas.Top="250" Canvas.Left="190" Width="400" Content="Show all subscriber" FontSize="40" FontFamily="Comic Sans MS" Height="100"></Button>
+                <Button BorderBrush="Black" BorderThickness="3" Background="DeepSkyBlue" Command="{Binding AddNewPost}" Canvas.Top="90" Canvas.Left="190" Width="400" Content="Add new post" FontSize="40" FontFamily="Comic Sans MS" Height="100">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button BorderBrush="Black" BorderThickness="3" Background="DeepSkyBlue" Command="{Binding ShowAllSubscriber}" Canvas.Top="250" Canvas.Left="190" Width="400" Content="Show all subscriber" FontSize="40" FontFamily="Comic Sans MS" Height="100">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Canvas>
         </StackPanel>
     </Grid>

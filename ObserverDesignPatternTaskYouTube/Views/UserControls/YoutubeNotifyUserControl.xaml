@@ -7,22 +7,18 @@
              mc:Ignorable="d" 
              Width="800" Height="200" Background="White">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="1"></GradientStop>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Canvas>
-            <!--<Label Width="120" Content="Title" Canvas.Top="80" Canvas.Left="30" FontSize="30" Height="50"></Label>
-            <Label Content="Picture" FontSize="30" Canvas.Top="80" Canvas.Left="300"></Label>
-            <Label Content="Youtuber" FontSize="30" Canvas.Top="80" Canvas.Right="30"></Label>-->
+            <Label Name="VideoTitleLabel" FontSize="30" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Height="200" Width="360" Canvas.Top="0" Canvas.Left="14"></Label>
 
-            <Label Background="Black" Height="200" Width="200" Canvas.Top="0" Canvas.Left="14"></Label>
+            <Label Name="YoutuberNameLabel" FontSize="30" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Height="200" Width="360" Canvas.Top="0" Canvas.Right="14"></Label>
 
-            <TextBlock Width="200" Height="10" Background="Blue" Canvas.Left="240">
-                <TextBlock.RenderTransform>
-                    <RotateTransform Angle="90"></RotateTransform>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-
-            <Label Background="Black" Height="200" Width="200" Canvas.Top="0" Canvas.Right="14"></Label>
-
-            <TextBlock Width="200" Height="10" Background="Blue" Canvas.Left="570">
+            <TextBlock Width="200" Height="10" Background="Blue" Canvas.Left="405">
                 <TextBlock.RenderTransform>
                     <RotateTransform Angle="90"></RotateTransform>
                 </TextBlock.RenderTransform>

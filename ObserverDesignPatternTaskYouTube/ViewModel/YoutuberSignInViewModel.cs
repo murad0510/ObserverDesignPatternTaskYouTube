@@ -76,6 +76,7 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
                     {
                         YouTubeWindow youTubeWindow = new YouTubeWindow();
                         App.SignInYoutuberName = youtubers[i].Name;
+                        
                         youTubeWindow.ShowDialog();
                         Name = string.Empty;
                         Password=string.Empty;

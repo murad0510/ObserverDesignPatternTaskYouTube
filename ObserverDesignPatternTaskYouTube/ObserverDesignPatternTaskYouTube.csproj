@@ -85,6 +85,9 @@
     <Compile Include="Views\SubscriberWindow.xaml.cs">
       <DependentUpon>SubscriberWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\YoutubeAddNewPostButtinUserControl.xaml.cs">
+      <DependentUpon>YoutubeAddNewPostButtinUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\YoutubeNotifyUserControl.xaml.cs">
       <DependentUpon>YoutubeNotifyUserControl.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SubscriberWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YoutubeAddNewPostButtinUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

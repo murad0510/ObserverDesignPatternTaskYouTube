@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObserverDesignPatternTaskYouTube.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace ObserverDesignPatternTaskYouTube.Views.UserControls
         public ShareVideoTitlePIctureYoutuberName()
         {
             InitializeComponent();
+            CorrectSignInUserControlViewModel correctSignInUserControlViewModel = new CorrectSignInUserControlViewModel();
+
+            this.DataContext = correctSignInUserControlViewModel;
         }
     }
 }

@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="YoutubeShowAllSubscriberWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="DeepSkyBlue" Offset="0.5"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <TextBlock Width="500" Name="MyTxtBlock" Height="400" Background="Blue" Text="{Binding TxtBlockContent,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="30"></TextBlock>
     </Grid>
 </Window>

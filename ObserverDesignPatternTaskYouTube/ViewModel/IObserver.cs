@@ -9,6 +9,6 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
 {
     public interface IObserver
     {
-        void Update(ISubject subject);
+        void Update(string videoTitle);
     }
 }

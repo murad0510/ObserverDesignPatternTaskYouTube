@@ -12,6 +12,6 @@ namespace ObserverDesignPatternTaskYouTube.ViewModel
 
         void Detach(IObserver observer);
 
-        void Notify();
+        void Notify(string videoTitle);
     }
 }
